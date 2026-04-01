@@ -1,8 +1,67 @@
-# AI-Powered Job Outreach Automation System
+# 🚀 AI-Powered Job Outreach Automation System
 
-Production-ready modular outreach platform with Gmail sending, OpenAI personalization/classification, follow-up scheduling, reply intelligence, and Streamlit analytics.
+An end-to-end intelligent system that automates job outreach using AI; from lead generation to personalized emails, reply classification, and performance analytics.
 
-## Architecture
+---
+
+## 🎯 Problem
+
+Applying to jobs manually is:
+- Time-consuming  
+- Repetitive  
+- Inefficient (low response rates)  
+
+Most candidates send generic applications with no tracking or feedback loop.
+
+---
+
+## 💡 Solution
+
+This system acts as an **AI job outreach engine** that:
+
+✅ Generates personalized cold emails using LLMs  
+✅ Sends emails via Gmail API  
+✅ Tracks recruiter responses  
+✅ Classifies replies (Interested / Not Interested / Follow-up)  
+✅ Automates follow-ups  
+✅ Displays performance metrics via dashboard  
+
+---
+
+## 🧠 Key Features
+
+### 🔹 AI Personalization Engine
+- Uses LLMs to generate customized email intros
+- Tailors outreach based on company + role
+
+### 🔹 Automated Email Pipeline
+- Gmail API integration (OAuth2)
+- Rate limiting + retry logic
+- Template-based email generation
+
+### 🔹 Reply Intelligence System
+- Fetches recruiter replies from inbox
+- Classifies responses using AI:
+  - INTERESTED
+  - NOT_INTERESTED
+  - NEUTRAL
+  - NEEDS_FOLLOWUP
+
+### 🔹 Follow-up Automation
+- Sends follow-ups after 3 days if no response
+- Stops outreach if negative response detected
+
+### 🔹 Analytics Dashboard (Streamlit)
+- Total leads
+- Emails sent
+- Replies received
+- Response rate %
+- Conversion rate %
+
+---
+
+## 🏗️ Architecture
+
 
 ```text
 app/
@@ -39,92 +98,85 @@ app/
     └── resilience.py
 ```
 
-## Features
 
-- CSV lead ingestion into structured domain/DB entities.
-- Personalized intro generation via OpenAI API.
-- Jinja2 email templates for cold and follow-up messages.
-- Gmail API OAuth2 integration for send + inbox sync.
-- Follow-up logic after 3 days if no reply.
-- Full event logging with statuses and metadata.
-- Retry + rate limiting to improve reliability and avoid spam signals.
-- Reply classification (`INTERESTED`, `NOT_INTERESTED`, `NEUTRAL`, `NEEDS_FOLLOWUP`).
-- Metrics engine: response rate, conversion rate, follow-up effectiveness.
-- Streamlit dashboard for live campaign analytics.
+Leads → Personalization → Email Sending → Inbox Sync
+↓
+Reply Classification
+↓
+Metrics Engine
+↓
+Streamlit Dashboard
 
-## Setup
 
-1. Create Python 3.10+ virtual environment.
-2. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-3. Configure environment:
-   ```bash
-   cp .env.example .env
-   ```
-4. Add Gmail OAuth `credentials.json` downloaded from Google Cloud Console.
-5. Update `.env` values.
+---
 
-## Gmail API notes
+## 🧰 Tech Stack
 
-- Enable **Gmail API** in your Google Cloud project.
-- Configure OAuth consent screen.
-- Create OAuth client credentials for desktop app.
-- First run will open browser auth flow and create `token.json`.
+- **Backend:** Python  
+- **AI:** OpenAI API  
+- **Email:** Gmail API (OAuth2)  
+- **Dashboard:** Streamlit  
+- **Data:** CSV / SQLite  
+- **Automation:** Cron / Scheduler  
 
-## Running pipelines
+---
 
-### Initial outreach send
+## ⚙️ Installation
 
 ```bash
-python -m scripts.run_outreach
-```
+git clone https://github.com/guna-thota/AI-powered-job-outreach-automation-system.git
+cd AI-powered-job-outreach-automation-system
+pip install -r requirements.txt
+🔐 Setup
 
-### Follow-up scheduler (3-day rule)
+Create .env file:
 
-```bash
-python -m scripts.run_followups
-```
+OPENAI_API_KEY=your_key
+SENDER_EMAIL=your_email
 
-### Inbox sync + reply classification
+Set up Gmail API:
 
-```bash
-python -m scripts.run_tracking_sync
-```
-
-Pipeline flow:
-
-`Gmail Inbox → Reply Parser → OpenAI Classifier → Lead Status Update → Metrics`
-
-## Streamlit dashboard
-
-```bash
+Enable Gmail API
+Download credentials
+Generate token.json
+▶️ Usage
+1. Run Outreach
+python scripts/run_outreach.py
+2. Process Replies
+python scripts/run_followups.py
+3. Launch Dashboard
 streamlit run app/dashboard/app.py
+📊 Example Output
+Personalized email generation
+Automated follow-ups
+Response tracking dashboard
 ```
+---
 
-Dashboard includes:
-- Total leads
-- Emails sent
-- Replies
-- Response rate %
-- Interested conversion %
-- Follow-up effectiveness %
-- Full lead table
+##🚀 Future Improvements
 
-## Example CSV format
 
-`data/leads.csv`
+-LinkedIn automation
+-Resume-job matching engine
+-Auto-reply generation
+-Multi-account scaling
 
-```csv
-name,email,company,role,tier,status
-Alice Johnson,alice@example.com,Acme Inc,Backend Engineer,A,NOT_SENT
-Bob Smith,bob@example.com,Globex,Data Engineer,B,NOT_SENT
-```
+---
 
-## Extensibility
+##💼 Why This Project Matters
 
-- Add providers in `ingestion/job_scraper.py`.
-- Support HTML emails by extending `gmail_client.py` MIME construction.
-- Replace SQLite with Postgres by changing `DATABASE_URL`.
-- Add webhook/IMAP ingestion adapters inside `tracking/reply_parser.py`.
+-This project simulates a real-world SaaS system for job automation:
+-Combines AI + backend + APIs
+-Implements full pipeline (not just scripts)
+-Demonstrates system design + scalability
+
+---
+
+##👨‍💻 Author
+
+Guna Durga Prashanth Thota --
+Data Engineer 
+
+---
+
+
