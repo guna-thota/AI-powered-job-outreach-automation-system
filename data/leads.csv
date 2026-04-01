@@ -1,0 +1,3 @@
+name,email,company,role,tier,status
+Alice Johnson,alice@example.com,Acme Inc,Backend Engineer,A,NOT_SENT
+Bob Smith,bob@example.com,Globex,Data Engineer,B,NOT_SENT

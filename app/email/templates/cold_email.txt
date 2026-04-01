@@ -1,0 +1,10 @@
+Hi {{ name }},
+
+{{ personalized_line }}
+
+I'm reaching out because your work at {{ company }} stood out to me, and I believe my backend and AI automation experience could add value to your team.
+
+If you're open to it, I'd love to share a few relevant projects and learn about current priorities for {{ role }} roles.
+
+Best,
+{{ sender_email }}
