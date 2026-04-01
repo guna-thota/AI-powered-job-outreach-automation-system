@@ -1,0 +1,10 @@
+Hi {{ name }},
+
+Just following up on my previous note in case it got buried.
+
+I'd still love to connect and briefly discuss how my experience could support {{ company }}.
+
+If now isn't the right time, no worries at all.
+
+Best,
+{{ sender_email }}

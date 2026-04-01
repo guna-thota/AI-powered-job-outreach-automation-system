@@ -1,0 +1,9 @@
+__pycache__/
+*.py[cod]
+*.sqlite3
+*.db
+.env
+token.json
+credentials.json
+.streamlit/
+.DS_Store
